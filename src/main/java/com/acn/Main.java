@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import java.util.Locale;
@@ -15,17 +16,18 @@ public class Main {
     //configuring default locale
     @Bean
     public LocaleResolver localeResolver(){
-        SessionLocaleResolver localeResolver=new SessionLocaleResolver();
+        //SessionLocaleResolver localeResolver=new SessionLocaleResolver();
+        AcceptHeaderLocaleResolver localeResolver=new AcceptHeaderLocaleResolver();
         localeResolver.setDefaultLocale(Locale.US);
         return localeResolver;
     }
     // configuring ResourceBundle
-    @Bean
+    /*@Bean
     public ResourceBundleMessageSource bundleMessageSource(){
         ResourceBundleMessageSource messageSource=new ResourceBundleMessageSource();
         messageSource.setBasename("messages");
         return messageSource;
-    }
+    }*/
 
     public static void main(String[] args) {
         SpringApplication.run(Main.class,args);
